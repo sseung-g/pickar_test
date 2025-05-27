@@ -1,6 +1,5 @@
 package com.pickcar.presentation.exception;
 
-import com.pickcar.drivehistory.exception.DriveHistoryException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.pickcar.util.constants.GlobalStatic;
@@ -24,12 +23,5 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(e.getErrorCode(), e.getReason());
         return ResponseEntity.status(HttpStatus.valueOf(e.getErrorCode().getErrorReason().getStatus()))
                 .body(errorResponse);
-    }
-
-    @ExceptionHandler(DriveHistoryException.class)
-    public ErrorResponse handleDriveHistoryException(DriveHistoryException e, HttpServletRequest request) {
-        log.error(GlobalStatic.ERROR_PREFIX + "DriveHistoryException => ErrorCode : {}, URI {}, Message :",
-                e.getErrorCode(), request.getRequestURI(), e.getReason());
-        return new ErrorResponse(e.getErrorCode(), e.getReason());
     }
 }
