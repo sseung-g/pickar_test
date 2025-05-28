@@ -1,6 +1,6 @@
 package com.pickcar.drivehistory.exception;
 
-import com.pickcar.presentation.exception.GlobalException;
+import com.pickcar.exception.GlobalException;
 
 public class DriveHistoryException extends GlobalException {
     
