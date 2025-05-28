@@ -1,4 +1,4 @@
-package com.pickcar.presentation.config;
+package com.pickcar.presentation.advice;
 
 import com.pickcar.presentation.dto.response.SuccessResponse;
 import jakarta.servlet.http.HttpServletResponse;
@@ -41,7 +41,7 @@ public class SuccessResponseAdvice implements ResponseBodyAdvice {
         }
 
         if(resolve.equals(HttpStatus.NO_CONTENT)) {
-            return null;
+            return null;        //FIXME: null 반환 안정성 고려 필요
         }
 
         if(resolve.is2xxSuccessful()) {
