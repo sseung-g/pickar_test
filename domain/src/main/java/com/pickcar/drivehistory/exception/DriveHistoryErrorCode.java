@@ -3,6 +3,9 @@ package com.pickcar.drivehistory.exception;
 import com.pickcar.constants.GlobalStatic.HttpStatus;
 import com.pickcar.exception.BaseErrorCode;
 import com.pickcar.exception.ErrorReason;
+import com.pickcar.swagger.annotation.ExplainError;
+import java.lang.reflect.Field;
+import java.util.Objects;
 
 
 public enum DriveHistoryErrorCode implements BaseErrorCode {
@@ -37,13 +40,13 @@ public enum DriveHistoryErrorCode implements BaseErrorCode {
 
     @Override
     public String getExplainError() throws NoSuchFieldException {
-        return "오류에 대한 설명 구현 by drive history";
+        Field field = this.getClass().getField(this.name());                            //Enum 클래스의 name을 기반으로 필드 추출
+        ExplainError annotation = field.getAnnotation(ExplainError.class);              
+        return Objects.nonNull(annotation) ? annotation.value() : this.getReason();     //Explain Error 어노테이션이 달려있으면, 그 값으로 활용, 없다면 getReason을 디폴트로 사용
     }
 
     @Override
     public Integer getHttpStatusCode() {
         return httpStatus.getCode();
     }
-
-
 }
