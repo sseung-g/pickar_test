@@ -193,4 +193,3 @@ application-prod.yml
 docker-compose.yml
 loki-config.yml
 prometheus.yml
-promtail-config.yml
