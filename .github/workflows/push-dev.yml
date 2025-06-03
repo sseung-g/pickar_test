@@ -54,7 +54,7 @@ jobs:
             DB_USERNAME_DEV=${{ secrets.DB_USERNAME_DEV }}
             DB_PASSWORD_DEV=${{ secrets.DB_PASSWORD_DEV }}
             EOL
-            echo ".env created successfully"
+            echo "docker/.env.dev created successfully"
 
       #EC2에서 application-dev.yml 파일 생성
       - name: Create application-dev.yml on EC2
@@ -81,9 +81,9 @@ jobs:
           key: ${{ secrets.EC2_ACTIONS_KEY }}
           script: |
             set -e
-            cd /home/ubuntu/pickcar_dev     
-            sudo docker compose -f docker/docker-compose.dev.yml down
+            cd /home/ubuntu/pickcar_dev
+            sudo docker compose --env-file docker/.env.dev -f docker/docker-compose.dev.yml down
             sudo docker container prune -f
-            sudo docker compose -f docker/docker-compose.dev.yml build --no-cache
-            sudo docker compose -f docker/docker-compose.dev.yml up -d
+            sudo docker compose --env-file docker/.env.dev -f docker/docker-compose.dev.yml build --no-cache
+            sudo docker compose --env-file docker/.env.dev -f docker/docker-compose.dev.yml up -d
             echo "Docker container is up and running"
