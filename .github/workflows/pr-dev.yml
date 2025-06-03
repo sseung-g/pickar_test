@@ -1,0 +1,25 @@
+#dev 브랜치에 PR 생성 시 테스트 및 빌드용
+name: Test Build on dev PR
+
+# dev 브랜치 대상 PR 생성/업데이트 시 실행
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 코드 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # gradlew 실행 권한 부여
+      - name: Grant execute permission to gradlew
+        run: chmod +x ./gradlew
+
+      # 테스트 제외하고 빌드 (TODO: 나중에 테스트 포함 가능)
+      - name: Build with Gradle
+        run: ./gradlew clean build -x test
