@@ -47,8 +47,8 @@ jobs:
           key: ${{ secrets.EC2_ACTIONS_KEY }}
           script: |
             set -e
-            cd /home/ubuntu/pickcar_dev
-            cat > .env <<EOL
+            cd /home/ubuntu/pickcar_dev/docker
+            cat > .env.dev <<EOL
             MYSQL_ROOT_PASSWORD_DEV=${{ secrets.MYSQL_ROOT_PASSWORD_DEV }}
             DB_NAME_DEV=${{ secrets.DB_NAME_DEV }}
             DB_USERNAME_DEV=${{ secrets.DB_USERNAME_DEV }}
