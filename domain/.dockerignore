@@ -7,6 +7,7 @@
 *.yml
 scripts
 .env
+/docker/.env*
 
 # Node.js 프로젝트라면
 #node_modules
