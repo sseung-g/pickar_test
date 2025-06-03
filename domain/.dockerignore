@@ -20,7 +20,7 @@ scripts
 
 # Docker 자체 파일
 Dockerfile.dev
-Dockerfile.prod
+Dockerfile.default
 .dockerignore
 
 # 빌드 결과물 (예: React, Spring Boot)
