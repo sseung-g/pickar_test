@@ -20,7 +20,7 @@ scripts
 .gitignore
 
 # Docker 자체 파일
-Dockerfile.dev
+domain/Dockerfile.dev
 Dockerfile.prod
 .dockerignore
 
